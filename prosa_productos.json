@@ -1,0 +1,180 @@
+{
+  "productos": [
+    {
+      "id": "p0001",
+      "nombre": "Máscara Clásica Café",
+      "referencia": "15151",
+      "precio": "pendiente",
+      "categoria": "Máscaras",
+      "subcategoria": "Clásicas",
+      "descripcion": "Fórmula contra agua con efecto alargador de pestañas. Con 4 aceites naturales: Hueso de Mamey, Sábila, Jojoba y Germen de Trigo.",
+      "imagen": "img/mascaras/15151.jpg",
+      "agotado": false
+    },
+    {
+      "id": "p0002",
+      "nombre": "Máscara Clásica Azul",
+      "referencia": "15152",
+      "precio": "pendiente",
+      "categoria": "Máscaras",
+      "subcategoria": "Clásicas",
+      "descripcion": "Fórmula contra agua con efecto alargador de pestañas. Con 4 aceites naturales: Hueso de Mamey, Sábila, Jojoba y Germen de Trigo.",
+      "imagen": "img/mascaras/15152.jpg",
+      "agotado": false
+    },
+    {
+      "id": "p0003",
+      "nombre": "Máscara Profesional",
+      "referencia": "15150",
+      "precio": "pendiente",
+      "categoria": "Máscaras",
+      "subcategoria": "Profesional",
+      "descripcion": "Efecto alargador de pestañas. Fórmula contra agua.",
+      "imagen": "img/mascaras/15150.jpg",
+      "agotado": false
+    },
+    {
+      "id": "p0004",
+      "nombre": "Máscara Profesional Silicón Café",
+      "referencia": "15175",
+      "precio": "pendiente",
+      "categoria": "Máscaras",
+      "subcategoria": "Profesional",
+      "descripcion": "Cepillo de silicón. Fórmula contra agua.",
+      "imagen": "img/mascaras/15175.jpg",
+      "agotado": false
+    },
+    {
+      "id": "p0005",
+      "nombre": "Máscara Gris oscuro Profesional Silicón",
+      "referencia": "15190",
+      "precio": "pendiente",
+      "categoria": "Máscaras",
+      "subcategoria": "Profesional",
+      "descripcion": "Cepillo de silicón. Fórmula contra agua.",
+      "imagen": "img/mascaras/15190.jpg",
+      "agotado": false
+    },
+    {
+      "id": "p0006",
+      "nombre": "Máscara morada Maxi-Volumen",
+      "referencia": "15153",
+      "precio": "pendiente",
+      "categoria": "Máscaras",
+      "subcategoria": "Maxi-Volumen",
+      "descripcion": "Maximiza el espesor de tus pestañas. Fórmula contra agua.",
+      "imagen": "img/mascaras/15153.jpg",
+      "agotado": false
+    },
+    {
+      "id": "p0007",
+      "nombre": "Máscara Fucsia Maxi-Volumen Silicón",
+      "referencia": "15191",
+      "precio": "pendiente",
+      "categoria": "Máscaras",
+      "subcategoria": "Maxi-Volumen",
+      "descripcion": "Cepillo de silicón. Fórmula contra agua.",
+      "imagen": "img/mascaras/15191.jpg",
+      "agotado": false
+    },
+    {
+      "id": "p0008",
+      "nombre": "Crystal Gel",
+      "referencia": "15157",
+      "precio": "pendiente",
+      "categoria": "Máscaras",
+      "subcategoria": "Colección Especial",
+      "descripcion": "Crystal Protein Gel. Tratamiento en máscara para pestañas.",
+      "imagen": "img/mascaras/15157.jpg",
+      "agotado": false
+    },
+    {
+      "id": "p0009",
+      "nombre": "Pestañina 4 en 1 aguacate",
+      "referencia": "15162",
+      "precio": "pendiente",
+      "categoria": "Máscaras",
+      "subcategoria": "Colección Especial",
+      "descripcion": "Fórmula contra agua con aceite de aguacate. Efecto alargador de pestañas.",
+      "imagen": "img/mascaras/15162.jpg",
+      "agotado": false
+    },
+    {
+      "id": "p0010",
+      "nombre": "Máscara gris claro Microfibras",
+      "referencia": "15167",
+      "precio": "pendiente",
+      "categoria": "Máscaras",
+      "subcategoria": "Colección Especial",
+      "descripcion": "Microfibras que funcionan como extensiones en tus pestañas. Fórmula contra agua.",
+      "imagen": "img/mascaras/15167.jpg",
+      "agotado": false
+    },
+    {
+      "id": "p0011",
+      "nombre": "Máscara Sensual Love",
+      "referencia": "15169",
+      "precio": "pendiente",
+      "categoria": "Máscaras",
+      "subcategoria": "Colección Especial",
+      "descripcion": "Volumen intenso. Fórmula contra agua.",
+      "imagen": "img/mascaras/15169.jpg",
+      "agotado": false
+    },
+    {
+      "id": "p0012",
+      "nombre": "Máscara Red Passion",
+      "referencia": "15174",
+      "precio": "pendiente",
+      "categoria": "Máscaras",
+      "subcategoria": "Colección Especial",
+      "descripcion": "Máxima extensión. Fórmula contra agua.",
+      "imagen": "img/mascaras/15174.jpg",
+      "agotado": false
+    },
+    {
+      "id": "p0013",
+      "nombre": "Delineador Café",
+      "referencia": "15192",
+      "precio": "pendiente",
+      "categoria": "Delineadores",
+      "subcategoria": "Líquido",
+      "descripcion": "Con 4 aceites naturales: Hueso de Mamey, Sábila, Jojoba y Germen de Trigo.",
+      "imagen": "img/delineadores/15192.jpg",
+      "agotado": false
+    },
+    {
+      "id": "p0014",
+      "nombre": "Delineador Negro",
+      "referencia": "15193",
+      "precio": "pendiente",
+      "categoria": "Delineadores",
+      "subcategoria": "Líquido",
+      "descripcion": "Con 4 aceites naturales: Hueso de Mamey, Sábila, Jojoba y Germen de Trigo.",
+      "imagen": "img/delineadores/15193.jpg",
+      "agotado": false
+    },
+    {
+      "id": "p0015",
+      "nombre": "Delineador Tintero Café",
+      "referencia": "15194",
+      "precio": "pendiente",
+      "categoria": "Delineadores",
+      "subcategoria": "Tintero",
+      "descripcion": "Delineador en tintero. Tono café.",
+      "imagen": "img/delineadores/15194.jpg",
+      "agotado": false
+    },
+    {
+      "id": "p0016",
+      "nombre": "Aceite Fortalecedor de Pestañas",
+      "referencia": "11405",
+      "precio": 16000,
+      "categoria": "Tratamientos",
+      "subcategoria": "Aceites y fortalecedores",
+      "descripcion": "Aceite para crecer y alargar las pestañas. 4 aceites naturales. Cont. Net. 15 ml.",
+      "imagen": "img/tratamientos/11405.jpg",
+      "agotado": false
+    }
+  ]
+}

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROSA® · Catálogo de Productos</title>
+<meta name="description" content="Catálogo digital PROSA® — máscaras, delineadores y tratamientos con 4 aceites naturales. Distribuido por Entrebell S.A.S.">
+<link rel="icon" href="img/logo-prosa.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blanco:#ffffff;
+    --gris:#dcdddb;
+    --gris-suave:#f2f2f0;
+    --cafe:#634f42;
+    --cafe-oscuro:#4a3a30;
+    --texto:#383838;
+    --verde:#1b3725;
+    --display:'Cormorant Garamond', Georgia, serif;
+    --sans:'Jost', 'Segoe UI', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    font-weight:300;
+    color:var(--texto);
+    background:var(--blanco);
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%}
+  button{font-family:inherit;cursor:pointer;border:none;background:none}
+  :focus-visible{outline:2px solid var(--cafe);outline-offset:3px}
+
+  /* ───────── Hero ───────── */
+  .hero{
+    text-align:center;
+    padding:56px 24px 40px;
+    position:relative;
+  }
+  .hero::after{
+    content:"";
+    display:block;
+    width:64px;height:1px;
+    background:var(--cafe);
+    margin:36px auto 0;
+    opacity:.5;
+  }
+  .hero-logo{
+    width:120px;
+    margin:0 auto 20px;
+  }
+  .hero-eyebrow{
+    font-size:.72rem;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--cafe);
+    font-weight:500;
+    margin-bottom:14px;
+  }
+  .hero h1{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.4rem, 6vw, 3.6rem);
+    line-height:1.05;
+    color:var(--verde);
+    letter-spacing:.02em;
+  }
+  .hero-sub{
+    font-family:var(--display);
+    font-style:italic;
+    font-size:1.15rem;
+    color:var(--cafe);
+    margin-top:10px;
+  }
+  .aceites{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px 0;
+    margin-top:28px;
+    font-size:.68rem;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--texto);
+    font-weight:400;
+  }
+  .aceites span{padding:0 18px;position:relative;white-space:nowrap}
+  .aceites span + span::before{
+    content:"·";
+    position:absolute;left:-4px;color:var(--cafe);
+  }
+
+  /* ───────── Barra de filtros ───────── */
+  .toolbar{
+    position:sticky;top:0;z-index:40;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(8px);
+    border-top:1px solid var(--gris);
+    border-bottom:1px solid var(--gris);
+    padding:14px 24px;
+  }
+  .toolbar-inner{
+    max-width:1180px;margin:0 auto;
+    display:flex;flex-wrap:wrap;align-items:center;
+    gap:12px 20px;justify-content:space-between;
+  }
+  .filtros{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    font-size:.72rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    font-weight:400;
+    color:var(--cafe);
+    padding:9px 18px;
+    border:1px solid var(--gris);
+    border-radius:999px;
+    background:var(--blanco);
+    transition:background .2s,color .2s,border-color .2s;
+  }
+  .chip:hover{border-color:var(--cafe)}
+  .chip.activo{
+    background:var(--cafe);
+    color:var(--blanco);
+    border-color:var(--cafe);
+    font-weight:500;
+  }
+  .buscador{position:relative;flex:1;min-width:220px;max-width:340px}
+  .buscador svg{
+    position:absolute;left:14px;top:50%;transform:translateY(-50%);
+    width:15px;height:15px;stroke:var(--cafe);opacity:.7;
+  }
+  .buscador input{
+    width:100%;
+    font-family:var(--sans);
+    font-weight:300;
+    font-size:.92rem;
+    color:var(--texto);
+    padding:10px 16px 10px 40px;
+    border:1px solid var(--gris);
+    border-radius:999px;
+    background:var(--gris-suave);
+    transition:border-color .2s, background .2s;
+  }
+  .buscador input:focus{
+    outline:none;border-color:var(--cafe);background:var(--blanco);
+  }
+  .buscador input::placeholder{color:#9a9a97}
+
+  /* ───────── Grilla ───────── */
+  .catalogo{max-width:1180px;margin:0 auto;padding:44px 24px 80px}
+  .seccion{margin-bottom:56px}
+  .seccion:last-child{margin-bottom:0}
+  .seccion-titulo{
+    display:flex;align-items:baseline;gap:16px;
+    margin-bottom:24px;
+  }
+  .seccion-titulo h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:1.9rem;
+    color:var(--verde);
+  }
+  .seccion-titulo .conteo{
+    font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;
+    color:var(--cafe);
+  }
+  .seccion-titulo::after{
+    content:"";flex:1;height:1px;background:var(--gris);
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+    gap:22px;
+  }
+  .card{
+    border:1px solid var(--gris);
+    border-radius:4px;
+    background:var(--blanco);
+    overflow:hidden;
+    text-align:left;
+    display:flex;flex-direction:column;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s;
+    padding:0;
+  }
+  .card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 14px 30px rgba(56,56,56,.10);
+    border-color:#c9cac7;
+  }
+  .card-img{
+    position:relative;
+    background:var(--gris-suave);
+    aspect-ratio:1/1;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+  }
+  .card-img img{
+    width:100%;height:100%;object-fit:contain;
+    mix-blend-mode:multiply;
+    padding:14px;
+    transition:transform .35s ease;
+  }
+  .card:hover .card-img img{transform:scale(1.04)}
+  .card.agotado .card-img img{filter:grayscale(1);opacity:.55}
+  .badge-agotado{
+    position:absolute;top:12px;left:12px;
+    background:var(--cafe);
+    color:var(--blanco);
+    font-size:.62rem;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    font-weight:500;
+    padding:6px 12px 5px;
+    border-radius:2px;
+  }
+  .sin-foto{
+    font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;
+    color:#a5a6a3;
+  }
+  .card-info{padding:18px 18px 20px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .card-info h3{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.18rem;
+    line-height:1.25;
+    color:var(--texto);
+  }
+  .card-ref{
+    font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;
+    color:var(--cafe);
+  }
+  .card-precio{
+    margin-top:auto;padding-top:10px;
+    font-size:.78rem;
+    font-weight:400;
+    color:var(--verde);
+    display:flex;align-items:center;gap:7px;
+  }
+  .card-precio::before{
+    content:"";width:14px;height:1px;background:var(--verde);opacity:.6;
+  }
+
+  .vacio{
+    text-align:center;
+    padding:90px 24px;
+    color:#8b8c89;
+  }
+  .vacio strong{
+    display:block;
+    font-family:var(--display);
+    font-weight:500;
+    font-size:1.6rem;
+    color:var(--cafe);
+    margin-bottom:8px;
+  }
+
+  /* ───────── Modal ───────── */
+  .modal-overlay{
+    position:fixed;inset:0;z-index:100;
+    background:rgba(27,55,37,.45);
+    display:flex;align-items:center;justify-content:center;
+    padding:20px;
+    opacity:0;pointer-events:none;
+    transition:opacity .25s;
+  }
+  .modal-overlay.abierto{opacity:1;pointer-events:auto}
+  .modal{
+    background:var(--blanco);
+    border-radius:6px;
+    max-width:760px;width:100%;
+    max-height:90vh;overflow-y:auto;
+    display:grid;grid-template-columns:1fr 1fr;
+    position:relative;
+    transform:translateY(14px);
+    transition:transform .25s;
+  }
+  .modal-overlay.abierto .modal{transform:translateY(0)}
+  .modal-img{
+    background:var(--gris-suave);
+    display:flex;align-items:center;justify-content:center;
+    min-height:320px;position:relative;
+  }
+  .modal-img img{width:100%;height:100%;object-fit:contain;padding:26px;mix-blend-mode:multiply}
+  .modal.agotado .modal-img img{filter:grayscale(1);opacity:.55}
+  .modal-body{padding:36px 32px;display:flex;flex-direction:column;gap:12px}
+  .modal-body .card-ref{font-size:.72rem}
+  .modal-body h2{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.8rem;
+    line-height:1.15;
+    color:var(--verde);
+  }
+  .modal-desc{font-size:.95rem;line-height:1.65;color:var(--texto)}
+  .modal-precio{
+    margin-top:auto;
+    border-top:1px solid var(--gris);
+    padding-top:16px;
+    font-size:.8rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-weight:500;
+    color:var(--cafe);
+  }
+  .modal-cerrar{
+    position:absolute;top:12px;right:12px;z-index:2;
+    width:36px;height:36px;
+    border-radius:50%;
+    background:var(--blanco);
+    border:1px solid var(--gris);
+    color:var(--cafe);
+    font-size:1rem;
+    line-height:1;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .2s,color .2s;
+  }
+  .modal-cerrar:hover{background:var(--cafe);color:var(--blanco)}
+
+  /* ───────── Footer ───────── */
+  footer{
+    border-top:1px solid var(--gris);
+    background:var(--gris-suave);
+    text-align:center;
+    padding:40px 24px 46px;
+  }
+  .footer-logo{width:70px;margin:0 auto 14px;opacity:.9}
+  footer p{
+    font-size:.72rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--cafe);
+    line-height:2;
+  }
+
+  /* ───────── Responsive ───────── */
+  @media (max-width:640px){
+    .hero{padding:40px 18px 32px}
+    .toolbar-inner{justify-content:center}
+    .buscador{max-width:100%}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+    .card-info{padding:14px}
+    .card-info h3{font-size:1.05rem}
+    .modal{grid-template-columns:1fr;max-height:92vh}
+    .modal-img{min-height:240px}
+    .modal-body{padding:26px 22px 30px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important;animation:none !important}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img class="hero-logo" src="img/logo-prosa.png" alt="PROSA®">
+  <p class="hero-eyebrow">Catálogo de productos</p>
+  <h1>Belleza natural<br>para tu mirada</h1>
+  <p class="hero-sub">Máscaras, delineadores y tratamientos · línea 4 en una</p>
+  <div class="aceites" aria-label="Cuatro aceites naturales">
+    <span>Hueso de Mamey</span><span>Sábila</span><span>Jojoba</span><span>Germen de Trigo</span>
+  </div>
+</header>
+
+<nav class="toolbar" aria-label="Filtros del catálogo">
+  <div class="toolbar-inner">
+    <div class="filtros" id="filtros" role="group" aria-label="Filtrar por categoría">
+      <button class="chip activo" data-cat="Todos">Todos</button>
+      <button class="chip" data-cat="Máscaras">Máscaras</button>
+      <button class="chip" data-cat="Delineadores">Delineadores</button>
+      <button class="chip" data-cat="Tratamientos">Tratamientos</button>
+    </div>
+    <div class="buscador">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/>
+      </svg>
+      <input type="search" id="busqueda" placeholder="Buscar por nombre o referencia…" aria-label="Buscar producto por nombre o referencia">
+    </div>
+  </div>
+</nav>
+
+<main class="catalogo" id="catalogo" aria-live="polite"></main>
+
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+  <div class="modal" id="modal">
+    <button class="modal-cerrar" id="modalCerrar" aria-label="Cerrar detalle">✕</button>
+    <div class="modal-img" id="modalImg"></div>
+    <div class="modal-body">
+      <span class="card-ref" id="modalRef"></span>
+      <h2 id="modalTitulo"></h2>
+      <p class="modal-desc" id="modalDesc"></p>
+      <p class="modal-precio">Consultar precio con asesor</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <img class="footer-logo" src="img/logo-prosa.png" alt="">
+  <p>PROSA® · Productos naturales para ojos<br>Distribuido por Entrebell S.A.S · Registro INVIMA</p>
+</footer>
+
+<script>
+(function(){
+  const ORDEN_CATEGORIAS = ["Máscaras","Delineadores","Tratamientos"];
+  const ORDEN_SUBCATEGORIAS = {
+    "Máscaras":["Clásicas","Profesional","Maxi-Volumen","Colección Especial"],
+    "Delineadores":["Líquido","Tintero"],
+    "Tratamientos":["Aceites y fortalecedores"]
+  };
+
+  let productos = [];
+  let categoriaActiva = "Todos";
+  let textoBusqueda = "";
+  let ultimoFoco = null;
+
+  const catalogo = document.getElementById("catalogo");
+  const overlay = document.getElementById("modalOverlay");
+  const modal = document.getElementById("modal");
+
+  fetch("prosa_productos.json")
+    .then(r => { if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(data => { productos = data.productos || []; render(); })
+    .catch(() => {
+      catalogo.innerHTML = '<div class="vacio"><strong>No se pudo cargar el catálogo</strong>Verifica que el archivo prosa_productos.json esté publicado junto al index.html y recarga la página.</div>';
+    });
+
+  function normalizar(t){
+    return (t||"").toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+  }
+
+  function filtrados(){
+    const q = normalizar(textoBusqueda.trim());
+    return productos.filter(p => {
+      const okCat = categoriaActiva === "Todos" || p.categoria === categoriaActiva;
+      const okTexto = !q || normalizar(p.nombre).includes(q) || normalizar(p.referencia).includes(q);
+      return okCat && okTexto;
+    });
+  }
+
+  function render(){
+    const lista = filtrados();
+    if(!lista.length){
+      catalogo.innerHTML = '<div class="vacio"><strong>Sin resultados</strong>No encontramos productos que coincidan con tu búsqueda. Intenta con otro nombre o referencia.</div>';
+      return;
+    }
+    const cats = ORDEN_CATEGORIAS.filter(c => lista.some(p => p.categoria === c));
+    // Categorías no previstas van al final
+    lista.forEach(p => { if(!cats.includes(p.categoria)) cats.push(p.categoria); });
+
+    let html = "";
+    cats.forEach(cat => {
+      const deCat = lista.filter(p => p.categoria === cat);
+      const subs = (ORDEN_SUBCATEGORIAS[cat] || []).filter(s => deCat.some(p => p.subcategoria === s));
+      deCat.forEach(p => { if(!subs.includes(p.subcategoria)) subs.push(p.subcategoria); });
+
+      const ordenados = [];
+      subs.forEach(s => deCat.filter(p => p.subcategoria === s).forEach(p => ordenados.push(p)));
+
+      html += '<section class="seccion">' +
+        '<div class="seccion-titulo"><h2>' + esc(cat) + '</h2>' +
+        '<span class="conteo">' + ordenados.length + (ordenados.length === 1 ? ' producto' : ' productos') + '</span></div>' +
+        '<div class="grid">' + ordenados.map(card).join("") + '</div></section>';
+    });
+    catalogo.innerHTML = html;
+  }
+
+  function card(p){
+    const agotado = p.agotado === true;
+    return '<button class="card' + (agotado ? ' agotado' : '') + '" data-id="' + esc(p.id) + '" aria-label="Ver detalle de ' + esc(p.nombre) + '">' +
+      '<div class="card-img">' +
+        (agotado ? '<span class="badge-agotado">Agotado</span>' : '') +
+        '<img src="' + esc(p.imagen) + '" alt="' + esc(p.nombre) + '" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'sin-foto\',textContent:\'Foto próximamente\'}))">' +
+      '</div>' +
+      '<div class="card-info">' +
+        '<span class="card-ref">Ref. ' + esc(p.referencia) + '</span>' +
+        '<h3>' + esc(p.nombre) + '</h3>' +
+        '<span class="card-precio">Consultar precio con asesor</span>' +
+      '</div></button>';
+  }
+
+  function esc(t){
+    return (t == null ? "" : String(t)).replace(/[&<>"']/g, c => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
+    }[c]));
+  }
+
+  /* Filtros */
+  document.getElementById("filtros").addEventListener("click", e => {
+    const btn = e.target.closest(".chip");
+    if(!btn) return;
+    categoriaActiva = btn.dataset.cat;
+    document.querySelectorAll(".chip").forEach(c => c.classList.toggle("activo", c === btn));
+    render();
+  });
+
+  /* Búsqueda */
+  document.getElementById("busqueda").addEventListener("input", e => {
+    textoBusqueda = e.target.value;
+    render();
+  });
+
+  /* Modal */
+  catalogo.addEventListener("click", e => {
+    const c = e.target.closest(".card");
+    if(!c) return;
+    const p = productos.find(x => x.id === c.dataset.id);
+    if(p) abrirModal(p, c);
+  });
+
+  function abrirModal(p, origen){
+    ultimoFoco = origen;
+    const agotado = p.agotado === true;
+    modal.classList.toggle("agotado", agotado);
+    document.getElementById("modalRef").textContent = "Ref. " + p.referencia;
+    document.getElementById("modalTitulo").textContent = p.nombre;
+    document.getElementById("modalDesc").textContent = p.descripcion || "";
+    document.getElementById("modalImg").innerHTML =
+      (agotado ? '<span class="badge-agotado" style="position:absolute;top:14px;left:14px">Agotado</span>' : '') +
+      '<img src="' + esc(p.imagen) + '" alt="' + esc(p.nombre) + '" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'sin-foto\',textContent:\'Foto próximamente\'}))">';
+    overlay.classList.add("abierto");
+    document.body.style.overflow = "hidden";
+    document.getElementById("modalCerrar").focus();
+  }
+
+  function cerrarModal(){
+    overlay.classList.remove("abierto");
+    document.body.style.overflow = "";
+    if(ultimoFoco) ultimoFoco.focus();
+  }
+
+  document.getElementById("modalCerrar").addEventListener("click", cerrarModal);
+  overlay.addEventListener("click", e => { if(e.target === overlay) cerrarModal(); });
+  document.addEventListener("keydown", e => {
+    if(e.key === "Escape" && overlay.classList.contains("abierto")) cerrarModal();
+  });
+})();
+</script>
+</body>
+</html>
