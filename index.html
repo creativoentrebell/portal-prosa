@@ -451,6 +451,7 @@
 <footer>
   <img class="footer-logo" src="img/logo-prosa.png" alt="">
   <p>PROSA® · Productos naturales para ojos<br>Distribuido por Entrebell S.A.S · Registro INVIMA</p>
+  <p style="margin-top:10px;font-size:.6rem;opacity:.55;letter-spacing:.2em">v3</p>
 </footer>
 
 <script>
@@ -607,6 +608,7 @@
     }
 
     overlay.classList.add("abierto");
+    overlay.style.display = "flex";
     document.body.style.overflow = "hidden";
     document.getElementById("modalCerrar").focus();
   }
@@ -619,6 +621,7 @@
 
   function cerrarModal(){
     overlay.classList.remove("abierto");
+    overlay.style.display = "none";
     document.body.style.overflow = "";
     if(ultimoFoco) ultimoFoco.focus();
   }
