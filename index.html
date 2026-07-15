@@ -148,6 +148,38 @@
     outline:none;border-color:var(--cafe);background:var(--blanco);
   }
   .buscador input::placeholder{color:#9a9a97}
+  .toggle-agotados{
+    display:flex;align-items:center;gap:10px;
+    font-size:.72rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-weight:400;
+    color:var(--cafe);
+    cursor:pointer;
+    user-select:none;
+    white-space:nowrap;
+  }
+  .toggle-agotados input{position:absolute;opacity:0;pointer-events:none}
+  .switch{
+    width:38px;height:21px;
+    border-radius:999px;
+    background:var(--gris);
+    position:relative;
+    transition:background .2s;
+    flex-shrink:0;
+  }
+  .switch::after{
+    content:"";
+    position:absolute;top:3px;left:3px;
+    width:15px;height:15px;
+    border-radius:50%;
+    background:var(--blanco);
+    box-shadow:0 1px 3px rgba(0,0,0,.25);
+    transition:transform .2s;
+  }
+  .toggle-agotados input:checked + .switch{background:var(--cafe)}
+  .toggle-agotados input:checked + .switch::after{transform:translateX(17px)}
+  .toggle-agotados input:focus-visible + .switch{outline:2px solid var(--cafe);outline-offset:3px}
 
   /* ───────── Grilla ───────── */
   .catalogo{max-width:1180px;margin:0 auto;padding:44px 24px 80px}
@@ -231,6 +263,23 @@
   .card-ref{
     font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;
     color:var(--cafe);
+  }
+  .card-desc{
+    font-size:.85rem;
+    line-height:1.5;
+    color:#5c5c5a;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+  .ver-mas{
+    font-size:.72rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-weight:500;
+    color:var(--cafe);
+    margin-top:2px;
   }
 
   .vacio{
@@ -359,6 +408,11 @@
       </svg>
       <input type="search" id="busqueda" placeholder="Buscar por nombre o referencia…" aria-label="Buscar producto por nombre o referencia">
     </div>
+    <label class="toggle-agotados">
+      <input type="checkbox" id="toggleAgotados" checked>
+      <span class="switch" aria-hidden="true"></span>
+      Mostrar agotados
+    </label>
   </div>
 </nav>
 
@@ -393,6 +447,7 @@
   let productos = [];
   let categoriaActiva = "Todos";
   let textoBusqueda = "";
+  let mostrarAgotados = true;
   let ultimoFoco = null;
 
   const catalogo = document.getElementById("catalogo");
@@ -415,7 +470,8 @@
     return productos.filter(p => {
       const okCat = categoriaActiva === "Todos" || p.categoria === categoriaActiva;
       const okTexto = !q || normalizar(p.nombre).includes(q) || normalizar(p.referencia).includes(q);
-      return okCat && okTexto;
+      const okStock = mostrarAgotados || p.agotado !== true;
+      return okCat && okTexto && okStock;
     });
   }
 
@@ -456,6 +512,8 @@
       '<div class="card-info">' +
         '<span class="card-ref">Ref. ' + esc(p.referencia) + '</span>' +
         '<h3>' + esc(p.nombre) + '</h3>' +
+        (p.descripcion ? '<p class="card-desc">' + esc(p.descripcion) + '</p>' : '') +
+        (p.descripcion && p.descripcion.length > 85 ? '<span class="ver-mas">Ver más</span>' : '') +
       '</div></button>';
   }
 
@@ -477,6 +535,12 @@
   /* Búsqueda */
   document.getElementById("busqueda").addEventListener("input", e => {
     textoBusqueda = e.target.value;
+    render();
+  });
+
+  /* Mostrar / ocultar agotados */
+  document.getElementById("toggleAgotados").addEventListener("change", e => {
+    mostrarAgotados = e.target.checked;
     render();
   });
 
