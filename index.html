@@ -296,8 +296,8 @@
     margin-bottom:8px;
   }
 
-  /* ───────── Modal ───────── */
-  .modal-overlay{
+  /* ───────── Ficha ───────── */
+  .ficha-overlay{
     position:fixed;
     top:0;left:0;right:0;bottom:0;
     z-index:100;
@@ -306,25 +306,25 @@
     align-items:center;justify-content:center;
     padding:20px;
   }
-  .modal-overlay.abierto{display:flex}
-  .modal{
+  .ficha-overlay.abierto{display:flex}
+  .ficha{
     background:#ffffff;
     border-radius:6px;
     max-width:760px;width:100%;
     max-height:90vh;overflow-y:auto;
     display:grid;grid-template-columns:1fr 1fr;
     position:relative;
-    animation:modalIn .22s ease;
+    animation:fichaIn .22s ease;
   }
-  @keyframes modalIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-  .modal-media{display:flex;flex-direction:column;background:var(--gris-suave)}
-  .modal-img{
+  @keyframes fichaIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  .ficha-media{display:flex;flex-direction:column;background:var(--gris-suave)}
+  .ficha-img{
     display:flex;align-items:center;justify-content:center;
     min-height:300px;position:relative;flex:1;
   }
-  .modal-img img{width:100%;height:100%;max-height:420px;object-fit:contain;padding:26px;mix-blend-mode:multiply}
-  .modal.agotado .modal-img img{filter:grayscale(1);opacity:.55}
-  .modal-thumbs{
+  .ficha-img img{width:100%;height:100%;max-height:420px;object-fit:contain;padding:26px;mix-blend-mode:multiply}
+  .ficha.agotado .ficha-img img{filter:grayscale(1);opacity:.55}
+  .ficha-thumbs{
     display:flex;gap:8px;
     padding:0 16px 16px;
     justify-content:center;
@@ -340,17 +340,17 @@
   }
   .thumb img{max-width:100%;max-height:100%;object-fit:contain}
   .thumb.activa{border-color:var(--cafe);border-width:2px}
-  .modal-body{padding:36px 32px;display:flex;flex-direction:column;gap:12px}
-  .modal-body .card-ref{font-size:.72rem}
-  .modal-body h2{
+  .ficha-body{padding:36px 32px;display:flex;flex-direction:column;gap:12px}
+  .ficha-body .card-ref{font-size:.72rem}
+  .ficha-body h2{
     font-family:var(--display);
     font-weight:600;
     font-size:1.55rem;
     line-height:1.15;
     color:var(--verde);
   }
-  .modal-desc{font-size:.95rem;line-height:1.65;color:var(--texto)}
-  .modal-cerrar{
+  .ficha-desc{font-size:.95rem;line-height:1.65;color:var(--texto)}
+  .ficha-cerrar{
     position:absolute;top:12px;right:12px;z-index:2;
     width:36px;height:36px;
     border-radius:50%;
@@ -361,7 +361,7 @@
     line-height:1;
     display:flex;align-items:center;justify-content:center;
   }
-  .modal-cerrar:hover{background:var(--cafe);color:#ffffff}
+  .ficha-cerrar:hover{background:var(--cafe);color:#ffffff}
 
   /* ───────── Footer ───────── */
   footer{
@@ -387,9 +387,9 @@
     .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
     .card-info{padding:14px}
     .card-info h3{font-size:1.05rem}
-    .modal{grid-template-columns:1fr;max-height:92vh}
-    .modal-img{min-height:220px}
-    .modal-body{padding:26px 22px 30px}
+    .ficha{grid-template-columns:1fr;max-height:92vh}
+    .ficha-img{min-height:220px}
+    .ficha-body{padding:26px 22px 30px}
   }
   @media (prefers-reduced-motion:reduce){
     *{transition:none !important;animation:none !important}
@@ -433,17 +433,17 @@
 
 <main class="catalogo" id="catalogo" aria-live="polite"></main>
 
-<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
-  <div class="modal" id="modal">
-    <button class="modal-cerrar" id="modalCerrar" aria-label="Cerrar detalle">✕</button>
-    <div class="modal-media">
-      <div class="modal-img" id="modalImg"></div>
-      <div class="modal-thumbs" id="modalThumbs"></div>
+<div class="ficha-overlay" id="fichaOverlay" role="dialog" aria-ficha="true" aria-labelledby="fichaTitulo">
+  <div class="ficha" id="ficha">
+    <button class="ficha-cerrar" id="fichaCerrar" aria-label="Cerrar detalle">✕</button>
+    <div class="ficha-media">
+      <div class="ficha-img" id="fichaImg"></div>
+      <div class="ficha-thumbs" id="fichaThumbs"></div>
     </div>
-    <div class="modal-body">
-      <span class="card-ref" id="modalRef"></span>
-      <h2 id="modalTitulo"></h2>
-      <p class="modal-desc" id="modalDesc"></p>
+    <div class="ficha-body">
+      <span class="card-ref" id="fichaRef"></span>
+      <h2 id="fichaTitulo"></h2>
+      <p class="ficha-desc" id="fichaDesc"></p>
     </div>
   </div>
 </div>
@@ -451,7 +451,7 @@
 <footer>
   <img class="footer-logo" src="img/logo-prosa.png" alt="">
   <p>PROSA® · Productos naturales para ojos<br>Distribuido por Entrebell S.A.S · Registro INVIMA</p>
-  <p style="margin-top:10px;font-size:.6rem;opacity:.55;letter-spacing:.2em">v3</p>
+  <p style="margin-top:10px;font-size:.6rem;opacity:.55;letter-spacing:.2em">v4</p>
 </footer>
 
 <script>
@@ -470,8 +470,8 @@
   let ultimoFoco = null;
 
   const catalogo = document.getElementById("catalogo");
-  const overlay = document.getElementById("modalOverlay");
-  const modal = document.getElementById("modal");
+  const overlay = document.getElementById("fichaOverlay");
+  const ficha = document.getElementById("ficha");
 
   fetch("prosa_productos.json")
     .then(r => { if(!r.ok) throw new Error(r.status); return r.json(); })
@@ -563,12 +563,12 @@
     render();
   });
 
-  /* Modal */
+  /* Ficha */
   catalogo.addEventListener("click", e => {
     const c = e.target.closest(".card");
     if(!c) return;
     const p = productos.find(x => x.id === c.dataset.id);
-    if(p) abrirModal(p, c);
+    if(p) abrirFicha(p, c);
   });
 
   function imagenesDe(p){
@@ -578,18 +578,18 @@
     return lista.filter(Boolean);
   }
 
-  function abrirModal(p, origen){
+  function abrirFicha(p, origen){
     ultimoFoco = origen;
     const agotado = p.agotado === true;
-    modal.classList.toggle("agotado", agotado);
-    document.getElementById("modalRef").textContent = "Ref. " + p.referencia;
-    document.getElementById("modalTitulo").textContent = p.nombre;
-    document.getElementById("modalDesc").textContent = p.descripcion || "";
+    ficha.classList.toggle("agotado", agotado);
+    document.getElementById("fichaRef").textContent = "Ref. " + p.referencia;
+    document.getElementById("fichaTitulo").textContent = p.nombre;
+    document.getElementById("fichaDesc").textContent = p.descripcion || "";
 
     const fotos = imagenesDe(p);
     mostrarFoto(p, fotos[0], agotado);
 
-    const thumbs = document.getElementById("modalThumbs");
+    const thumbs = document.getElementById("fichaThumbs");
     if (fotos.length > 1) {
       thumbs.innerHTML = fotos.map(function(f, i){
         return '<button class="thumb' + (i === 0 ? ' activa' : '') + '" data-src="' + esc(f) + '" aria-label="Foto ' + (i+1) + ' de ' + esc(p.nombre) + '">' +
@@ -610,26 +610,26 @@
     overlay.classList.add("abierto");
     overlay.style.display = "flex";
     document.body.style.overflow = "hidden";
-    document.getElementById("modalCerrar").focus();
+    document.getElementById("fichaCerrar").focus();
   }
 
   function mostrarFoto(p, src, agotado){
-    document.getElementById("modalImg").innerHTML =
+    document.getElementById("fichaImg").innerHTML =
       (agotado ? '<span class="badge-agotado" style="position:absolute;top:14px;left:14px">Agotado</span>' : '') +
       '<img src="' + esc(src) + '" alt="' + esc(p.nombre) + '" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'sin-foto\',textContent:\'Foto próximamente\'}))">';
   }
 
-  function cerrarModal(){
+  function cerrarFicha(){
     overlay.classList.remove("abierto");
     overlay.style.display = "none";
     document.body.style.overflow = "";
     if(ultimoFoco) ultimoFoco.focus();
   }
 
-  document.getElementById("modalCerrar").addEventListener("click", cerrarModal);
-  overlay.addEventListener("click", e => { if(e.target === overlay) cerrarModal(); });
+  document.getElementById("fichaCerrar").addEventListener("click", cerrarFicha);
+  overlay.addEventListener("click", e => { if(e.target === overlay) cerrarFicha(); });
   document.addEventListener("keydown", e => {
-    if(e.key === "Escape" && overlay.classList.contains("abierto")) cerrarModal();
+    if(e.key === "Escape" && overlay.classList.contains("abierto")) cerrarFicha();
   });
 })();
 </script>
