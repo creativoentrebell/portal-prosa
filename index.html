@@ -298,32 +298,48 @@
 
   /* ───────── Modal ───────── */
   .modal-overlay{
-    position:fixed;inset:0;z-index:100;
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    z-index:100;
     background:rgba(27,55,37,.45);
-    display:flex;align-items:center;justify-content:center;
+    display:none;
+    align-items:center;justify-content:center;
     padding:20px;
-    opacity:0;pointer-events:none;
-    transition:opacity .25s;
   }
-  .modal-overlay.abierto{opacity:1;pointer-events:auto}
+  .modal-overlay.abierto{display:flex}
   .modal{
-    background:var(--blanco);
+    background:#ffffff;
     border-radius:6px;
     max-width:760px;width:100%;
     max-height:90vh;overflow-y:auto;
     display:grid;grid-template-columns:1fr 1fr;
     position:relative;
-    transform:translateY(14px);
-    transition:transform .25s;
+    animation:modalIn .22s ease;
   }
-  .modal-overlay.abierto .modal{transform:translateY(0)}
+  @keyframes modalIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  .modal-media{display:flex;flex-direction:column;background:var(--gris-suave)}
   .modal-img{
-    background:var(--gris-suave);
     display:flex;align-items:center;justify-content:center;
-    min-height:320px;position:relative;
+    min-height:300px;position:relative;flex:1;
   }
-  .modal-img img{width:100%;height:100%;object-fit:contain;padding:26px;mix-blend-mode:multiply}
+  .modal-img img{width:100%;height:100%;max-height:420px;object-fit:contain;padding:26px;mix-blend-mode:multiply}
   .modal.agotado .modal-img img{filter:grayscale(1);opacity:.55}
+  .modal-thumbs{
+    display:flex;gap:8px;
+    padding:0 16px 16px;
+    justify-content:center;
+  }
+  .thumb{
+    width:52px;height:52px;
+    border:1px solid var(--gris);
+    border-radius:4px;
+    background:#ffffff;
+    padding:4px;
+    display:flex;align-items:center;justify-content:center;
+    transition:border-color .2s;
+  }
+  .thumb img{max-width:100%;max-height:100%;object-fit:contain}
+  .thumb.activa{border-color:var(--cafe);border-width:2px}
   .modal-body{padding:36px 32px;display:flex;flex-direction:column;gap:12px}
   .modal-body .card-ref{font-size:.72rem}
   .modal-body h2{
@@ -338,15 +354,14 @@
     position:absolute;top:12px;right:12px;z-index:2;
     width:36px;height:36px;
     border-radius:50%;
-    background:var(--blanco);
+    background:#ffffff;
     border:1px solid var(--gris);
     color:var(--cafe);
     font-size:1rem;
     line-height:1;
     display:flex;align-items:center;justify-content:center;
-    transition:background .2s,color .2s;
   }
-  .modal-cerrar:hover{background:var(--cafe);color:var(--blanco)}
+  .modal-cerrar:hover{background:var(--cafe);color:#ffffff}
 
   /* ───────── Footer ───────── */
   footer{
@@ -373,7 +388,7 @@
     .card-info{padding:14px}
     .card-info h3{font-size:1.05rem}
     .modal{grid-template-columns:1fr;max-height:92vh}
-    .modal-img{min-height:240px}
+    .modal-img{min-height:220px}
     .modal-body{padding:26px 22px 30px}
   }
   @media (prefers-reduced-motion:reduce){
@@ -421,7 +436,10 @@
 <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
   <div class="modal" id="modal">
     <button class="modal-cerrar" id="modalCerrar" aria-label="Cerrar detalle">✕</button>
-    <div class="modal-img" id="modalImg"></div>
+    <div class="modal-media">
+      <div class="modal-img" id="modalImg"></div>
+      <div class="modal-thumbs" id="modalThumbs"></div>
+    </div>
     <div class="modal-body">
       <span class="card-ref" id="modalRef"></span>
       <h2 id="modalTitulo"></h2>
@@ -552,6 +570,13 @@
     if(p) abrirModal(p, c);
   });
 
+  function imagenesDe(p){
+    if (Array.isArray(p.imagenes) && p.imagenes.length) return p.imagenes;
+    const lista = [p.imagen];
+    if (p.imagen2) lista.push(p.imagen2);
+    return lista.filter(Boolean);
+  }
+
   function abrirModal(p, origen){
     ultimoFoco = origen;
     const agotado = p.agotado === true;
@@ -559,12 +584,37 @@
     document.getElementById("modalRef").textContent = "Ref. " + p.referencia;
     document.getElementById("modalTitulo").textContent = p.nombre;
     document.getElementById("modalDesc").textContent = p.descripcion || "";
-    document.getElementById("modalImg").innerHTML =
-      (agotado ? '<span class="badge-agotado" style="position:absolute;top:14px;left:14px">Agotado</span>' : '') +
-      '<img src="' + esc(p.imagen) + '" alt="' + esc(p.nombre) + '" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'sin-foto\',textContent:\'Foto próximamente\'}))">';
+
+    const fotos = imagenesDe(p);
+    mostrarFoto(p, fotos[0], agotado);
+
+    const thumbs = document.getElementById("modalThumbs");
+    if (fotos.length > 1) {
+      thumbs.innerHTML = fotos.map(function(f, i){
+        return '<button class="thumb' + (i === 0 ? ' activa' : '') + '" data-src="' + esc(f) + '" aria-label="Foto ' + (i+1) + ' de ' + esc(p.nombre) + '">' +
+          '<img src="' + esc(f) + '" alt="">' + '</button>';
+      }).join("");
+      thumbs.style.display = "flex";
+      thumbs.onclick = function(e){
+        const t = e.target.closest(".thumb");
+        if (!t) return;
+        thumbs.querySelectorAll(".thumb").forEach(function(x){ x.classList.toggle("activa", x === t); });
+        mostrarFoto(p, t.getAttribute("data-src"), agotado);
+      };
+    } else {
+      thumbs.innerHTML = "";
+      thumbs.style.display = "none";
+    }
+
     overlay.classList.add("abierto");
     document.body.style.overflow = "hidden";
     document.getElementById("modalCerrar").focus();
+  }
+
+  function mostrarFoto(p, src, agotado){
+    document.getElementById("modalImg").innerHTML =
+      (agotado ? '<span class="badge-agotado" style="position:absolute;top:14px;left:14px">Agotado</span>' : '') +
+      '<img src="' + esc(src) + '" alt="' + esc(p.nombre) + '" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'sin-foto\',textContent:\'Foto próximamente\'}))">';
   }
 
   function cerrarModal(){
