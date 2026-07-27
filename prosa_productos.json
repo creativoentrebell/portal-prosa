@@ -87,7 +87,8 @@
       "imagenes": [
         "img/prosa/15153.jpg",
         "img/prosa/15153_2.png",
-        "img/prosa/15153_3.webp"
+        "img/prosa/15153_3.webp",
+        "img/prosa/15153_4.png"
       ]
     },
     {
@@ -103,7 +104,8 @@
       "imagenes": [
         "img/prosa/15191.jpg",
         "img/prosa/15191_2.png",
-        "img/prosa/15191_3.webp"
+        "img/prosa/15191_3.webp",
+        "img/prosa/15191_4.webp"
       ]
     },
     {
@@ -118,7 +120,8 @@
       "agotado": false,
       "imagenes": [
         "img/prosa/15157.jpg",
-        "img/prosa/15157_2.webp"
+        "img/prosa/15157_2.webp",
+        "img/prosa/15157_3.webp"
       ]
     },
     {
@@ -133,7 +136,8 @@
       "agotado": false,
       "imagenes": [
         "img/prosa/15162.jpg",
-        "img/prosa/15162_2.webp"
+        "img/prosa/15162_2.webp",
+        "img/prosa/15162_3.webp"
       ]
     },
     {
@@ -149,7 +153,8 @@
       "imagenes": [
         "img/prosa/15167.jpg",
         "img/prosa/15167_2.png",
-        "img/prosa/15167_3.webp"
+        "img/prosa/15167_3.webp",
+        "img/prosa/15167_4.jpg"
       ]
     },
     {
@@ -164,7 +169,8 @@
       "agotado": false,
       "imagenes": [
         "img/prosa/15169.jpg",
-        "img/prosa/15169_2.webp"
+        "img/prosa/15169_2.webp",
+        "img/prosa/15169_3.png"
       ]
     },
     {
@@ -179,7 +185,8 @@
       "agotado": false,
       "imagenes": [
         "img/prosa/15174.jpg",
-        "img/prosa/15174_1.webp"
+        "img/prosa/15174_1.webp",
+        "img/prosa/15174_2.png"
       ]
     },
     {
@@ -194,7 +201,9 @@
       "agotado": false,
       "imagenes": [
         "img/prosa/15192.jpg",
-        "img/prosa/15192_2.webp"
+        "img/prosa/15192_2.webp",
+        "img/prosa/15192_3.webp",
+        "img/prosa/15192_4.mp4"
       ]
     },
     {
@@ -209,7 +218,10 @@
       "agotado": false,
       "imagenes": [
         "img/prosa/15193.jpg",
-        "img/prosa/15193_2.webp"
+        "img/prosa/15193_2.webp",
+        "img/prosa/15193_3.png",
+        "img/prosa/15193_4.mp4",
+        "img/prosa/15193_5.webp"
       ]
     },
     {
@@ -224,7 +236,10 @@
       "agotado": false,
       "imagenes": [
         "img/prosa/15194.jpg",
-        "img/prosa/15194_2.webp"
+        "img/prosa/15194_2.webp",
+        "img/prosa/15194_3.webp",
+        "img/prosa/15194_4.mp4",
+        "img/prosa/15194_5.webp"
       ]
     },
     {
@@ -266,7 +281,11 @@
       "subcategoria": "Colección Especial",
       "descripcion": "Pestañina de la línea 4 en una enriquecida con aceite de semilla de mamey. Cont. Net. 12 g.",
       "imagen": "img/prosa/15180.webp",
-      "agotado": false
+      "agotado": false,
+      "imagenes": [
+        "img/prosa/15180.webp",
+        "img/prosa/15180_2.mp4"
+      ]
     },
     {
       "id": "p0019",
@@ -280,7 +299,10 @@
       "agotado": false,
       "imagenes": [
         "img/prosa/15195.jpg",
-        "img/prosa/15195_2.jpg"
+        "img/prosa/15195_2.jpg",
+        "img/prosa/15195_3.webp",
+        "img/prosa/15195_4.mp4",
+        "img/prosa/15195_5.webp"
       ]
     }
   ]
