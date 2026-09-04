@@ -304,6 +304,18 @@
         "img/prosa/15195_4.mp4",
         "img/prosa/15195_5.webp"
       ]
+    },
+    {
+      "id": "p0020",
+      "nombre": "Máscara Borgoña Maxi-Volumen",
+      "referencia": "15196",
+      "precio": 13000,
+      "categoria": "Máscaras",
+      "subcategoria": "Maxi-Volumen",
+      "descripcion": "Pestañina Maxi-Volumen en envase vinotinto. Línea 4 en una con fórmula a prueba de agua para volumen intenso y duradero. Cont. Net. 13 g.",
+      "imagen": "img/prosa/15196.png",
+      "agotado": false,
+      "preventa": true
     }
   ]
 }
