@@ -1010,11 +1010,23 @@
     return (t||"").toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
   }
 
+  /* Nombre/marca: sin tildes, guion = espacio, orden de palabras libre */
+  function palabrasBusqueda(t){
+    return normalizar(t).replace(/[-_\u2010-\u2015]+/g," ").split(/\s+/).filter(Boolean);
+  }
+
+  function coincideNombre(p, palabras){
+    if(!palabras.length) return false;
+    const texto = " " + palabrasBusqueda((p.nombre || "") + " " + (p.marca || "")).join(" ");
+    return palabras.every(w => texto.includes(w));
+  }
+
   function filtrados(){
     const q = normalizar(textoBusqueda.trim());
+    const palabras = palabrasBusqueda(textoBusqueda);
     return productos.filter(p => {
       const okCat = categoriaActiva === "Todos" || p.categoria === categoriaActiva;
-      const okTexto = !q || normalizar(p.nombre).includes(q) || normalizar(p.referencia).includes(q);
+      const okTexto = !q || coincideNombre(p, palabras) || normalizar(p.referencia).includes(q);
       const okStock = mostrarAgotados || p.agotado !== true;
       return okCat && okTexto && okStock;
     });
