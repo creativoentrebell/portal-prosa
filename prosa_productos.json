@@ -9,7 +9,7 @@
       "subcategoria": "Clásicas",
       "descripcion": "Máscara clásica en tono café con fórmula contra agua y efecto alargador de pestañas. Enriquecida con 4 aceites naturales: Hueso de Mamey, Sábila, Jojoba y Germen de Trigo. Cont. Net. 14 g.",
       "imagen": "img/prosa/15151.jpg",
-      "agotado": false,
+      "agotado": true,
       "imagenes": [
         "img/prosa/15151.jpg",
         "img/prosa/15151_2.webp"
@@ -133,7 +133,7 @@
       "subcategoria": "Colección Especial",
       "descripcion": "Pestañina 4 en 1 con aceite de aguacate. Fórmula contra agua con efecto alargador de pestañas. Tono negro. Presentación en envase verde.",
       "imagen": "img/prosa/15162.jpg",
-      "agotado": false,
+      "agotado": true,
       "imagenes": [
         "img/prosa/15162.jpg",
         "img/prosa/15162_2.webp",
@@ -266,7 +266,7 @@
       "subcategoria": "Clásicas",
       "descripcion": "Máscara clásica en tono negro con fórmula contra agua y efecto alargador de pestañas. Línea 4 en una con aceites naturales. Cont. Net. 14 g.",
       "imagen": "img/prosa/15154.jpg",
-      "agotado": false,
+      "agotado": true,
       "imagenes": [
         "img/prosa/15154.jpg",
         "img/prosa/15154_2.jpg"
@@ -281,7 +281,7 @@
       "subcategoria": "Colección Especial",
       "descripcion": "Pestañina de la línea 4 en una enriquecida con aceite de semilla de mamey. Cont. Net. 12 g.",
       "imagen": "img/prosa/15180.webp",
-      "agotado": false,
+      "agotado": true,
       "imagenes": [
         "img/prosa/15180.webp",
         "img/prosa/15180_2.mp4"
