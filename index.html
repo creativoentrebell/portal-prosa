@@ -36,6 +36,40 @@
   :focus-visible{outline:2px solid var(--cafe);outline-offset:3px}
   .solo-lector{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
+  /* ───────── Banner de marca ───────── */
+  .banner{background:var(--blanco);border-bottom:1px solid var(--gris-suave)}
+  .banner-inner{
+    max-width:1180px;margin:0 auto;
+    display:flex;align-items:center;gap:32px;
+    padding:22px 24px;
+  }
+  .banner-logo{width:86px;flex-shrink:0}
+  .banner-texto{flex:1;min-width:0;padding-left:32px;border-left:1px solid var(--gris)}
+  .banner-eyebrow{
+    font-size:.66rem;letter-spacing:.42em;text-transform:uppercase;
+    color:var(--cafe);font-weight:500;margin-bottom:6px;
+  }
+  .banner h1{
+    font-family:var(--display);font-weight:500;
+    font-size:clamp(1.6rem, 2.6vw, 2.15rem);line-height:1.1;
+    color:var(--verde);letter-spacing:.01em;
+  }
+  .banner-sub{
+    font-family:var(--display);font-style:italic;
+    font-size:1.02rem;color:var(--cafe);margin-top:6px;
+  }
+  .banner-aceites{flex-shrink:0;text-align:left}
+  .banner-aceites p{
+    font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--cafe);font-weight:500;margin-bottom:8px;
+  }
+  .banner-aceites ul{
+    list-style:none;display:grid;grid-template-columns:auto auto;gap:6px 22px;
+    font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--texto);font-weight:400;
+  }
+  .banner-aceites li{white-space:nowrap;position:relative;padding-left:12px}
+  .banner-aceites li::before{content:"·";position:absolute;left:0;color:var(--cafe)}
+
   /* ───────── Cabecera fija ───────── */
   .cabecera{
     position:sticky;top:0;z-index:50;
@@ -50,6 +84,8 @@
   }
   .barra-logo{flex-shrink:0;display:flex;align-items:center}
   .barra-logo img{height:40px;width:auto}
+  .barra-logo{transition:opacity .25s}
+  .con-banner .barra-logo{opacity:0;pointer-events:none}
   .buscador{position:relative;flex:1;max-width:640px;margin:0 auto}
   .buscador > svg{
     position:absolute;left:18px;top:50%;transform:translateY(-50%);
@@ -920,7 +956,21 @@
   }
 
   /* ───────── Celular ───────── */
+  @media (max-width:1000px){
+    .banner-inner{gap:22px}
+    .banner-texto{padding-left:22px}
+    .banner-aceites{display:none}
+  }
   @media (max-width:760px){
+    .banner-inner{gap:14px;padding:14px 14px 12px;flex-wrap:wrap}
+    .banner-logo{width:52px}
+    .banner-texto{padding-left:14px}
+    .banner-eyebrow{display:none}
+    .banner h1{font-size:1.28rem}
+    .banner-sub{font-size:.8rem;margin-top:3px;line-height:1.35}
+    .banner-aceites{display:block;width:100%;text-align:center}
+    .banner-aceites p{display:none}
+    .banner-aceites ul{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;font-size:.52rem;letter-spacing:.16em;opacity:.8}
     .barra{gap:10px;padding:10px 14px 8px}
     .barra-logo img{height:30px}
     .buscador input{font-size:16px;padding:10px 38px 10px 40px}
@@ -1002,6 +1052,22 @@
 </style>
 </head>
 <body>
+
+<!-- ───────── Banner de marca ───────── -->
+<section class="banner" aria-label="PROSA®">
+  <div class="banner-inner">
+    <img class="banner-logo" src="img/logo-prosa.png" alt="PROSA®">
+    <div class="banner-texto">
+      <p class="banner-eyebrow">Catálogo de productos</p>
+      <h1>Belleza natural para tu mirada</h1>
+      <p class="banner-sub">Máscaras, delineadores y tratamientos · línea 4 en una</p>
+    </div>
+    <div class="banner-aceites" aria-label="Cuatro aceites naturales">
+      <p>4 aceites naturales</p>
+      <ul><li>Hueso de Mamey</li><li>Sábila</li><li>Jojoba</li><li>Germen de Trigo</li></ul>
+    </div>
+  </div>
+</section>
 
 <!-- ───────── Cabecera fija ───────── -->
 <header class="cabecera" id="cabecera">
@@ -1198,9 +1264,6 @@
 
 <footer>
   <img class="footer-logo" src="img/logo-prosa.png" alt="">
-  <div class="aceites" aria-label="Cuatro aceites naturales">
-    <span>Hueso de Mamey</span><span>Sábila</span><span>Jojoba</span><span>Germen de Trigo</span>
-  </div>
   <p>PROSA® · Productos naturales para ojos<br>Distribuido por Entrebell S.A.S · Registro INVIMA</p>
   <p style="margin-top:10px;font-size:.6rem;opacity:.55;letter-spacing:.2em">v5.0 · pruebas</p>
 </footer>
@@ -1450,7 +1513,7 @@
 
   function htmlEncabezado(total){
     return htmlRuta() +
-      '<h1 class="lat-titulo">' + esc(tituloActual()) + '</h1>' +
+      '<h2 class="lat-titulo">' + esc(tituloActual()) + '</h2>' +
       '<p class="lat-conteo">' + plural(total, "resultado", "resultados") + '</p>';
   }
 
@@ -1827,6 +1890,14 @@
     document.documentElement.style.setProperty("--alto-busca", (barra.getBoundingClientRect().bottom + 4) + "px");
   }
   window.addEventListener("resize", medirCabecera);
+
+  /* El logo de la barra solo aparece cuando el banner ya salió de la pantalla */
+  const bannerEl = document.querySelector(".banner");
+  if (bannerEl && "IntersectionObserver" in window) {
+    new IntersectionObserver(entradas => {
+      document.body.classList.toggle("con-banner", entradas[0].isIntersecting);
+    }).observe(bannerEl);
+  }
   medirCabecera();
 
   /* ═════════════ Bienvenida ═════════════ */
@@ -1862,8 +1933,8 @@
   }
 
   function relacionadosDe(p){
-    const otros = productos.filter(x => x.id !== p.id && okStock(x));
-    const puntaje = x => (x.subcategoria === p.subcategoria ? 2 : 0) + (x.categoria === p.categoria ? 1 : 0) + (x.agotado === true ? -0.5 : 0);
+    const otros = productos.filter(x => x.id !== p.id && x.agotado !== true);
+    const puntaje = x => (x.subcategoria === p.subcategoria ? 2 : 0) + (x.categoria === p.categoria ? 1 : 0);
     return otros.slice().sort((a, b) => (puntaje(b) - puntaje(a)) || (a._i - b._i)).slice(0, 4);
   }
 
